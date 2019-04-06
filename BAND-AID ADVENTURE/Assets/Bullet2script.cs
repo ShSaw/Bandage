@@ -9,6 +9,7 @@ public class Bullet2script : MonoBehaviour
     Transform tform;
     Animator anim;
     Stopwatch stopWatch;
+    float score = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +27,16 @@ public class Bullet2script : MonoBehaviour
         {
             tform.position = new Vector2(tform.position.x + (float)-1.3, tform.position.y);
         }
+        if (tform.position.x >= -26 && tform.position.x <= -18 && Input.GetKeyDown("space"))
+        {
+            UnityEngine.Debug.Log("score: " + score);
+            score += 300;
+        }
+
+        if (Input.GetKeyDown("space")) {
+            UnityEngine.Debug.Log("score: " + score);
+            score -= 50;
+        }
+
     }
 }
