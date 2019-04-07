@@ -8,37 +8,41 @@ using UnityEngine.UI;
 public class Bullet2script : MonoBehaviour
 {
     Transform tform;
-    Animator anim;
-    Stopwatch stopWatch;
-    float score = 0;
-    public Text scoreText; 
+    public float score = 0;
+    bool active;
+    arm arm;
+
     // Start is called before the first frame update
     void Start()
     {
-        this.anim = GetComponent<Animator>();
-        stopWatch = new Stopwatch();
-        stopWatch.Start();
+        arm = FindObjectOfType<arm>();
         this.tform = GetComponent<Transform>();
-        scoreText.text = "Score: " + score.ToString();
+        active = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        anim.SetFloat("Time", stopWatch.ElapsedMilliseconds/1000);
-        if (stopWatch.ElapsedMilliseconds > 2000)
+        if (active)
         {
-            tform.position = new Vector2(tform.position.x + (float)-1.3, tform.position.y);
+            if (arm.stopWatch.ElapsedMilliseconds > 2000)
+            {
+                tform.position = new Vector2(tform.position.x + (float)-1.3, tform.position.y);
+            }
+            if (tform.position.x >= -30 && tform.position.x <= -18 && Input.GetKeyDown("space"))
+            {
+                score += 300;
+            }
+            else if (Input.GetKeyDown("space"))
+            {
+                score -= 50;
+            }
         }
-        if (tform.position.x >= -30 && tform.position.x <= -18 && Input.GetKeyDown("space"))
+        if (tform.position.x < -50)
         {
-            UnityEngine.Debug.Log("score: " + score);
-            score += 300;
-        } else if (Input.GetKeyDown("space")) {
-            UnityEngine.Debug.Log("score: " + score);
-            score -= 50;
+            active = false;
+            tform.gameObject.SetActive(false);
         }
-        scoreText.text = "Score: " + score.ToString();
     }
 
     public float getScore()
