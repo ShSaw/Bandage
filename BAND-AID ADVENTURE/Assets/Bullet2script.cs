@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bullet2script : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Bullet2script : MonoBehaviour
     Animator anim;
     Stopwatch stopWatch;
     float score = 0;
+    public Text scoreText; 
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,7 @@ public class Bullet2script : MonoBehaviour
         stopWatch = new Stopwatch();
         stopWatch.Start();
         this.tform = GetComponent<Transform>();
+        scoreText.text = "Score: " + score.ToString();
     }
 
     // Update is called once per frame
@@ -27,16 +30,19 @@ public class Bullet2script : MonoBehaviour
         {
             tform.position = new Vector2(tform.position.x + (float)-1.3, tform.position.y);
         }
-        if (tform.position.x >= -26 && tform.position.x <= -18 && Input.GetKeyDown("space"))
+        if (tform.position.x >= -30 && tform.position.x <= -18 && Input.GetKeyDown("space"))
         {
             UnityEngine.Debug.Log("score: " + score);
             score += 300;
-        }
-
-        if (Input.GetKeyDown("space")) {
+        } else if (Input.GetKeyDown("space")) {
             UnityEngine.Debug.Log("score: " + score);
             score -= 50;
         }
+        scoreText.text = "Score: " + score.ToString();
+    }
 
+    public float getScore()
+    {
+        return score;
     }
 }
