@@ -11,10 +11,12 @@ public class Bullet2script : MonoBehaviour
     public float score = 0;
     bool active;
     arm arm;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
+        this.anim = GetComponent<Animator>();
         arm = FindObjectOfType<arm>();
         this.tform = GetComponent<Transform>();
         active = true;
@@ -23,9 +25,10 @@ public class Bullet2script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        anim.SetFloat("Time", arm.stopWatch.ElapsedMilliseconds);
         if (active)
         {
-            if (arm.stopWatch.ElapsedMilliseconds > 2000)
+            if (arm.stopWatch.ElapsedMilliseconds > 6300)
             {
                 tform.position = new Vector2(tform.position.x + (float)-1.3, tform.position.y);
             }

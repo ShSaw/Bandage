@@ -8,13 +8,15 @@ using UnityEngine.UI;
 public class sc : MonoBehaviour
 {
     Transform tform;
-    Stopwatch stopWatch;
     public float score = 0;
     bool active;
     arm arm;
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
+        this.anim = GetComponent<Animator>();
         arm = FindObjectOfType<arm>();
         this.tform = GetComponent<Transform>();
         active = true;
@@ -23,19 +25,22 @@ public class sc : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        anim.SetFloat("Time", arm.stopWatch.ElapsedMilliseconds);
         if (active)
         {
-            if (arm.stopWatch.ElapsedMilliseconds > 500)
+            if (arm.stopWatch.ElapsedMilliseconds > 6000)
             {
                 tform.position = new Vector2(tform.position.x + (float)-1.3, tform.position.y);
             }
             if (tform.position.x >= -30 && tform.position.x <= -18 && Input.GetKeyDown("space"))
             {
                 score += 300;
+                UnityEngine.Debug.Log(score);
             }
             else if (Input.GetKeyDown("space"))
             {
                 score -= 50;
+                UnityEngine.Debug.Log(score);
             }
         }
         if (tform.position.x < -50)
@@ -43,5 +48,10 @@ public class sc : MonoBehaviour
             active = false;
             tform.gameObject.SetActive(false);
         }
+    }
+
+    public float getScore()
+    {
+        return score;
     }
 }
