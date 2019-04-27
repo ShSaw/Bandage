@@ -32,18 +32,22 @@ public class sc : MonoBehaviour
             {
                 tform.position = new Vector2(tform.position.x + (float)-1.3, tform.position.y);
             }
-            if (tform.position.x >= -30 && tform.position.x <= -18 && Input.GetKeyDown("space"))
+            if (tform.position.x >= -55 && tform.position.x <= -24 && Input.GetKeyDown("space"))
             {
                 score += 300;
                 UnityEngine.Debug.Log(score);
             }
             else if (Input.GetKeyDown("space"))
             {
-                score -= 50;
+                //score -= 50;
                 UnityEngine.Debug.Log(score);
             }
         }
-        if (tform.position.x < -50)
+        if (tform.position.x < -35)
+        {
+            anim.SetBool("Dead", true);
+        }
+        if (tform.position.x < -55)
         {
             active = false;
             tform.gameObject.SetActive(false);

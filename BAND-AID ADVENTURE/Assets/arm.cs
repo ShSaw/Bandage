@@ -31,6 +31,25 @@ public class arm : MonoBehaviour
     B20 b20;
     B21 b21;
     B22 b22;
+    B23 b23;
+    B24 b24;
+    B25 b25;
+    B26 b26;
+    B27 b27;
+    B28 b28;
+    B29 b29;
+    B30 b30;
+    B31 b31;
+    B32 b32;
+    B33 b33;
+    B34 b34;
+    B35 b35;
+    B36 b36;
+    B37 b37;
+    B38 b38;
+    B39 b39;
+    B40 b40;
+    B41 b41;
      // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +79,29 @@ public class arm : MonoBehaviour
         b20 = FindObjectOfType<B20>();
         b21 = FindObjectOfType<B21>();
         b22 = FindObjectOfType<B22>();
+        b23 = FindObjectOfType<B23>();
+        b24 = FindObjectOfType<B24>();
+        b25 = FindObjectOfType<B25>();
+        b26 = FindObjectOfType<B26>();
+        b27 = FindObjectOfType<B27>();
+        b28 = FindObjectOfType<B28>();
+        b29 = FindObjectOfType<B29>();
+        b30 = FindObjectOfType<B30>();
+        b31 = FindObjectOfType<B31>();
+        b32 = FindObjectOfType<B32>();
+        b33 = FindObjectOfType<B33>();
+        b34 = FindObjectOfType<B34>();
+        b35 = FindObjectOfType<B35>();
+        b36 = FindObjectOfType<B36>();
+        b37 = FindObjectOfType<B37>();
+        b38 = FindObjectOfType<B38>();
+        b39 = FindObjectOfType<B39>();
+        b40 = FindObjectOfType<B40>();
+        b41 = FindObjectOfType<B41>();
+
+
+
+
     }
 
     // Update is called once per frame
@@ -68,6 +110,7 @@ public class arm : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
 
         score = b1.score + b2.score + b3.score + b4.score + b5.score + b6.score + b7.score + b8.score + b9.score + b10.score + b11.score + b12.score + b13.score +
-        b14.score + b15.score + b16.score + b17.score + b18.score + b19.score + b20.score + b21.score + b22.score;
+        b14.score + b15.score + b16.score + b17.score + b18.score + b19.score + b20.score + b21.score + b22.score + b23.score + b24.score + b25.score + b26.score + b27.score +
+        b28.score + b29.score + b30.score + b31.score + b32.score + b33.score + b34.score + b35.score + b36.score + b37.score + b38.score + b39.score + b40.score + b41.score;
 }
 }

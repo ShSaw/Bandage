@@ -10,35 +10,50 @@ public class bullet3 : MonoBehaviour
     Transform tform;
     Animator anim;
     Stopwatch stopWatch;
+    arm arm;
+    bool active;
     float score = 0;
     public Text scoreText;
     // Start is called before the first frame update
     void Start()
     {
         this.anim = GetComponent<Animator>();
-        stopWatch = new Stopwatch();
+        arm = FindObjectOfType<arm>();
         stopWatch.Start();
+        active = true;
         this.tform = GetComponent<Transform>();
     }
         // Update is called once per frame
-        void Update()
+    void Update()
         {
-            anim.SetFloat("Time", stopWatch.ElapsedMilliseconds);
-            if (stopWatch.ElapsedMilliseconds > 6500)
+        anim.SetFloat("Time", arm.stopWatch.ElapsedMilliseconds);
+        if (active)
             {
-                tform.position = new Vector2(tform.position.x + (float)-1.3, tform.position.y);
+                if (arm.stopWatch.ElapsedMilliseconds > 6500)
+                {
+                    tform.position = new Vector2(tform.position.x + (float)-1.3, tform.position.y);
+                }
+                if (tform.position.x >= -55 && tform.position.x <= -24 && Input.GetKeyDown("space"))
+                {
+                    score += 300;
+                }
+                else if (Input.GetKeyDown("space"))
+                {
+                    //score -= 50;
+                }
             }
-            if (tform.position.x >= -30 && tform.position.x <= -18 && Input.GetKeyDown("space"))
+            if (tform.position.x < -35)
             {
-                UnityEngine.Debug.Log("score: " + score);
-                score += 300;
-            } else if (Input.GetKeyDown("space")) {
-                UnityEngine.Debug.Log("score: " + score);
-                score -= 50;
+                anim.SetBool("Dead", true);
             }
-        }
-
-
-
-    
+            if (tform.position.x < -50)
+            {
+                active = false;
+                tform.gameObject.SetActive(false);
+            }
+       }
 }
+        
+
+
+
